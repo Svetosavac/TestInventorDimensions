@@ -46,7 +46,11 @@ namespace TestInventorDimensions
 
          var lineVector = line.StartPoint.VectorTo(line.EndPoint);
          var horizon = _trg.CreateVector2d(1, 0);
+         
          var angle = lineVector.AngleTo(horizon);
+         var degree = RadianToDegree(angle);
+         angle = DegreeToRadian(-1 * degree);
+         
          matrix.SetToRotation(angle, center);
          
          rotStartPoint = _trg.CreatePoint2d(line.StartPoint.X, line.StartPoint.Y);
@@ -73,6 +77,15 @@ namespace TestInventorDimensions
          // TODO: implement CheckDimension3d
       }
       
-     
+      public static double DegreeToRadian(double angle)
+      {
+         return Math.PI * angle / 180.0;
+      }
+
+      public static double RadianToDegree(double angle)
+      {
+         return angle * (180.0 / Math.PI);
+      }
+
    }
 }
